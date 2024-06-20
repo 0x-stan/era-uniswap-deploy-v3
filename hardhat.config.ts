@@ -1,4 +1,7 @@
 import '@matterlabs/hardhat-zksync-solc'
+import "@matterlabs/hardhat-zksync-deploy";
+import "@matterlabs/hardhat-zksync-verify";
+
 import { task } from 'hardhat/config'
 import { deployV3 } from './index'
 
@@ -19,6 +22,13 @@ task('deploy-v3')
 // This config will be used to compile the `v3-periphery-1_3_0/contracts/NonfungibleTokenPositionDescriptor.sol` contract
 export default {
   networks: {
+    zkSyncSepoliaTestnet: {
+      url: "https://sepolia.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
+      ethNetwork: "sepolia", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `sepolia`)
+      zksync: true,
+      // Verification endpoint for Sepolia
+      verifyURL: 'https://explorer.sepolia.era.zksync.dev/contract_verification'
+    },
     hardhat: {
       zksync: true,
     },
